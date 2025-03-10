@@ -255,8 +255,8 @@ jobs:
           ARPSPOOF_PID=$!
 
           # Wait for the process to finish (adjust to a fixed time)
-          sleep 10
-
+          sleep 3
+ 
           # Kill the process after waiting for the defined time
           sudo kill $ARPSPOOF_PID
           
