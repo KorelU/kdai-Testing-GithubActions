@@ -206,10 +206,10 @@ jobs:
        # Expects Packet to be accepted when the server sees a DHCP ACK
         run: |
           # Create and send the switch a Cusotm DHCP packet ACK for both 192.168.1.1 and 192.168.1.2
-          sudo ip netns exec ns1 python3 DHCP_Snooping.py
+          sudo ip netns exec ns1 python3 ./tests/DHCP_Snooping.py
 
           #Send and ARP Request and wait for a Response
-          sudo ip netns exec ns1 python3 ARP_Request_And_Response.py
+          sudo ip netns exec ns1 python3 ./tests/ARP_Request_And_Response.py
 
           # Check dmesg logs for the ARP drop status
           ARP_DROP_STATUS=$(sudo dmesg | grep "ARP RETURN status was: NF_ACCEPT")
