@@ -162,7 +162,7 @@ jobs:
           sudo ip netns exec ns1 ip link set veth0 up
 
           sudo ip netns exec ns2 ip link set veth3 down
-          sudo ip netns exec ns2 sudo ifconfig veth0 hw ether 00:22:44:66:88:00
+          sudo ip netns exec ns2 sudo ifconfig veth3 hw ether 00:22:44:66:88:00
           sudo ip netns exec ns2 ip link set veth3 up
 
           #Add Static MAC addresses to veth0 and veth3
