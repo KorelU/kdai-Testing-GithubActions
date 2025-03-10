@@ -166,8 +166,8 @@ jobs:
           sudo ip netns exec ns2 ip link set veth3 up
 
           #Add Static MAC addresses to veth0 and veth3
-          #sudo arp -s 192.168.1.1 e2:c8:14:a6:4f:ed
-          #sudo arp -s 192.168.1.2 3a:18:70:ca:91:b2
+          sudo arp -s 192.168.1.1 e2:c8:14:a6:4f:ed
+          sudo arp -s 192.168.1.2 3a:18:70:ca:91:b2
 
           # Run the ARP Request and Response script
           sudo ip netns exec ns1 python3 ./tests/ARP_Request_And_Response.py
