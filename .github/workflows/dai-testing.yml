@@ -249,7 +249,8 @@ jobs:
           sudo ip netns exec ns1 python3 ./tests/DHCP_Snooping.py
 
           # Run the ARP Request and Response script
-          sudo timeout 3s sudo ip netns exec ns1 sudo arpspoof -i veth0 -t 192.168.1.11 192.168.1.101  
+          sudo ip netns exec ns1 sudo arpspoof -i veth0 -t 192.168.1.11 192.168.1.101 &
+          
           
           # Check dmesg logs for the ARP drop status
           ARP_DROP_STATUS=$(sudo dmesg | grep "ARP RETURN status was: NF_DROP")
