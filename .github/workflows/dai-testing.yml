@@ -158,12 +158,17 @@ jobs:
         run: |
           #Assign static MAC addresses to veth0 and veth3
           sudo ip netns exec ns1 ip link set veth0 down
-          sudo ip netns exec ns1 sudo ifconfig veth0 hw ether 11:22:33:44:55:66 
+          sudo ip netns exec ns1 sudo ifconfig veth0 hw ether 11:33:55:77:99:11 
           sudo ip netns exec ns1 ip link set veth0 up
 
           sudo ip netns exec ns2 ip link set veth3 down
           sudo ip netns exec ns2 sudo ifconfig veth0 hw ether 00:22:44:66:88:00
           sudo ip netns exec ns2 ip link set veth3 up
+
+          #Add Static MAC addresses to veth0 and veth3
+          sudo arp -s 192.168.1.1 11:33:55:77:99:11
+          sudo arp -s 192.168.1.2 00:22:44:66:88:00
+
 
           # Run the ARP Request and Response script
           sudo ip netns exec ns1 python3 ./tests/ARP_Request_And_Response.py
