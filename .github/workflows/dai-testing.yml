@@ -250,6 +250,15 @@ jobs:
 
           # Run the ARP Request and Response script
           sudo ip netns exec ns1 sudo arpspoof -i veth0 -t 192.168.1.11 192.168.1.101 &
+
+          # Save the process ID
+          ARPSPOOF_PID=$!
+
+          # Wait for the process to finish (adjust to a fixed time)
+          sleep 10
+
+          # Kill the process after waiting for the defined time
+          sudo kill $ARPSPOOF_PID
           
           
           # Check dmesg logs for the ARP drop status
@@ -263,7 +272,7 @@ jobs:
           if [ -n "$ARP_DROP_STATUS" ]; then
             sudo echo "Test Passed!"
           else
-            sudo echo "The ARP Request was not met with a response"
+            sudo echo "The ARP Request was met with a response"
             sudo echo "Test Failed!"
             exit 1
           fi
